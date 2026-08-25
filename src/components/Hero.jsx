@@ -1,4 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// Reusable Avatar component with automated fallback if image link breaks
+function UserAvatar({ src, alt, className }) {
+  const [imgError, setImgError] = useState(false);
+
+  // Extract initials (e.g., "Aarohi Sharma" -> "AS")
+  const initials = alt
+    ? alt
+        .split(' ')
+        .map((n) => n[0])
+        .join('')
+        .toUpperCase()
+    : 'HB';
+
+  if (imgError || !src) {
+    return (
+      <div className={`${className} bg-primary-fixed text-primary font-bold flex items-center justify-center border border-primary/20 shrink-0 text-sm`}>
+        {initials}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setImgError(true)}
+      className={`${className} shrink-0`}
+    />
+  );
+}
 
 export default function Hero() {
   return (
@@ -33,7 +64,7 @@ export default function Hero() {
           {/* Trust Badges */}
           <div className="flex flex-wrap items-center gap-4 text-xs md:text-sm text-on-surface-variant mt-2">
             <div className="flex items-center gap-1">
-              <span className="material-symbols-outlined text-success text-base">verified</span>
+              <span className="material-symbols-outlined text-emerald-600 text-base">verified</span>
               <span>Verified Profiles</span>
             </div>
             <div className="flex items-center gap-1">
@@ -47,9 +78,13 @@ export default function Hero() {
         <div className="lg:col-span-5 flex flex-col gap-4">
           {/* Talent Card 1 */}
           <div className="p-4 bg-white rounded-2xl border border-surface-variant shadow-sm flex items-center gap-4">
-            <img src="https://via.placeholder.com/60" alt="Aarav Sharma" className="w-14 h-14 rounded-full object-cover" />
+            <UserAvatar 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" 
+              alt="Aarohi Sharma" 
+              className="w-14 h-14 rounded-full object-cover" 
+            />
             <div className="flex flex-col text-left">
-              <h4 className="font-semibold text-on-surface">Aarav Sharma</h4>
+              <h4 className="font-semibold text-on-surface">Aarohi Sharma</h4>
               <p className="text-xs text-on-surface-variant">Video Editor & Motion Designer</p>
               <div className="flex items-center gap-1 mt-1 text-xs text-amber-500 font-medium">
                 <span className="material-symbols-outlined text-sm">star</span>
@@ -60,7 +95,11 @@ export default function Hero() {
 
           {/* Talent Card 2 */}
           <div className="p-4 bg-white rounded-2xl border border-surface-variant shadow-sm flex items-center gap-4 ml-0 sm:ml-6">
-            <img src="https://via.placeholder.com/60" alt="Priya Karki" className="w-14 h-14 rounded-full object-cover" />
+            <UserAvatar 
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" 
+              alt="Priya Karki" 
+              className="w-14 h-14 rounded-full object-cover" 
+            />
             <div className="flex flex-col text-left">
               <h4 className="font-semibold text-on-surface">Priya Karki</h4>
               <p className="text-xs text-on-surface-variant">UI/UX Designer</p>
