@@ -2,14 +2,17 @@ import React from 'react';
 
 export default function MarketplacePreview() {
   return (
-    <section className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-      <div className="mb-12 text-center">
-        <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">See what's inside.</h2>
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">A powerful, intuitive dashboard designed to help you find work or manage projects efficiently.</p>
+    <section className="py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
+      <div className="mb-8 md:mb-12 text-center">
+        <h2 className="text-2xl md:text-4xl font-bold text-on-surface mb-2 md:mb-4">See what's inside.</h2>
+        <p className="text-sm md:text-lg text-on-surface-variant max-w-2xl mx-auto">A powerful, intuitive dashboard designed to help you find work or manage projects efficiently.</p>
       </div>
-      <div className="bg-surface-container-low rounded-2xl shadow-xl border border-outline-variant overflow-hidden flex flex-col md:flex-row h-[600px]">
+      
+      {/* Container: Changed fixed h-[600px] to min-h-[500px] auto height for mobile */}
+      <div className="bg-surface-container-low rounded-2xl shadow-xl border border-outline-variant overflow-hidden flex flex-col md:flex-row min-h-[500px]">
+        {/* Desktop Sidebar (hidden on mobile to save vertical space) */}
         <div className="w-full md:w-64 bg-white border-r border-outline-variant p-6 hidden md:flex flex-col gap-6">
-          <div className="font-label-md font-bold text-on-surface mb-2">Filters</div>
+          <div className="font-bold text-on-surface mb-2">Filters</div>
           <div className="space-y-4">
             <div>
               <label className="text-sm font-medium text-on-surface-variant block mb-2">Category</label>
@@ -19,75 +22,33 @@ export default function MarketplacePreview() {
                 <option>Development</option>
               </select>
             </div>
-            <div>
-              <label className="text-sm font-medium text-on-surface-variant block mb-2">Budget Range</label>
-              <input className="w-full" type="range"/>
-              <div className="flex justify-between text-xs text-outline mt-1">
-                <span>Rs. 0</span>
-                <span>Rs. 50k+</span>
-              </div>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-on-surface-variant block mb-2">Skills</label>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-surface-container-high px-2 py-1 rounded text-xs">Figma</span>
-                <span className="bg-surface-container-high px-2 py-1 rounded text-xs">React</span>
-              </div>
-            </div>
           </div>
         </div>
-        <div className="flex-1 p-6 bg-surface overflow-y-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="font-title-lg text-on-surface">Recommended Projects</h3>
-            <div className="flex gap-2">
-              <button className="bg-white border border-outline-variant px-3 py-1.5 rounded-md text-sm flex items-center gap-1">
-                <span className="material-symbols-outlined text-[18px]">sort</span> Sort
-              </button>
-            </div>
+
+        {/* Project feed */}
+        <div className="flex-1 p-4 md:p-6 bg-surface overflow-y-auto">
+          <div className="flex justify-between items-center mb-4 md:mb-6">
+            <h3 className="font-bold text-base md:text-lg text-on-surface">Recommended Projects</h3>
+            <button className="bg-white border border-outline-variant px-3 py-1.5 rounded-md text-xs md:text-sm flex items-center gap-1">
+              <span className="material-symbols-outlined text-base">sort</span> Sort
+            </button>
           </div>
           <div className="space-y-4">
-            <div className="bg-white p-5 rounded-xl border border-surface-container-high flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+            <div className="bg-white p-4 sm:p-5 rounded-xl border border-surface-container-high flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
               <div>
-                <h4 className="font-label-md font-bold text-on-surface mb-1">E-commerce Website Design</h4>
-                <p className="text-sm text-on-surface-variant mb-2">Need a complete UI design for a clothing brand in Figma.</p>
+                <h4 className="font-bold text-sm md:text-base text-on-surface mb-1">E-commerce Website Design</h4>
+                <p className="text-xs md:text-sm text-on-surface-variant mb-2">Need a complete UI design for a clothing brand in Figma.</p>
                 <div className="flex gap-2">
                   <span className="bg-[#F3F3FE] text-[#434655] px-2 py-0.5 rounded text-xs">Design</span>
                   <span className="bg-[#F3F3FE] text-[#434655] px-2 py-0.5 rounded text-xs">Figma</span>
                 </div>
               </div>
-              <div className="text-right sm:text-right w-full sm:w-auto mt-2 sm:mt-0">
-                <p className="font-bold text-on-surface">Rs. 20,000</p>
-                <p className="text-xs text-on-surface-variant mb-2">Fixed Price</p>
-                <button className="bg-primary-container text-white px-4 py-1.5 rounded-md text-sm hover:bg-blue-600">View</button>
-              </div>
-            </div>
-            <div className="bg-white p-5 rounded-xl border border-surface-container-high flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-              <div>
-                <h4 className="font-label-md font-bold text-on-surface mb-1">Content Writer for Tech Blog</h4>
-                <p className="text-sm text-on-surface-variant mb-2">Looking for 4 SEO-optimized articles per month.</p>
-                <div className="flex gap-2">
-                  <span className="bg-[#F3F3FE] text-[#434655] px-2 py-0.5 rounded text-xs">Writing</span>
-                  <span className="bg-[#F3F3FE] text-[#434655] px-2 py-0.5 rounded text-xs">SEO</span>
+              <div className="text-left sm:text-right w-full sm:w-auto mt-2 sm:mt-0 flex sm:flex-col justify-between items-center sm:items-end border-t sm:border-t-0 pt-2 sm:pt-0">
+                <div>
+                  <p className="font-bold text-sm md:text-base text-on-surface">Rs. 20,000</p>
+                  <p className="text-xs text-on-surface-variant hidden sm:block">Fixed Price</p>
                 </div>
-              </div>
-              <div className="text-right sm:text-right w-full sm:w-auto mt-2 sm:mt-0">
-                <p className="font-bold text-on-surface">Rs. 5,000 / article</p>
-                <p className="text-xs text-on-surface-variant mb-2">Ongoing</p>
-                <button className="bg-primary-container text-white px-4 py-1.5 rounded-md text-sm hover:bg-blue-600">View</button>
-              </div>
-            </div>
-            <div className="bg-white p-5 rounded-xl border border-surface-container-high flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center opacity-70">
-              <div>
-                <h4 className="font-label-md font-bold text-on-surface mb-1">Logo Design for Startup</h4>
-                <p className="text-sm text-on-surface-variant mb-2">Minimalist logo needed for a new delivery service.</p>
-                <div className="flex gap-2">
-                  <span className="bg-[#F3F3FE] text-[#434655] px-2 py-0.5 rounded text-xs">Design</span>
-                </div>
-              </div>
-              <div className="text-right sm:text-right w-full sm:w-auto mt-2 sm:mt-0">
-                <p className="font-bold text-on-surface">Rs. 8,000</p>
-                <p className="text-xs text-on-surface-variant mb-2">Fixed Price</p>
-                <button className="bg-surface-container-high text-on-surface px-4 py-1.5 rounded-md text-sm">View</button>
+                <button className="bg-primary-container text-white px-4 py-1.5 rounded-md text-xs md:text-sm hover:bg-blue-600">View</button>
               </div>
             </div>
           </div>

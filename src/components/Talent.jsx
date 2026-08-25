@@ -39,44 +39,76 @@ const talentList = [
 
 export default function Talent() {
   return (
-    <section className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="talent">
-      <div className="flex justify-between items-end mb-12">
+    <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="talent">
+      {/* Header Section */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-8 md:mb-12 gap-4 text-left">
         <div>
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Find people who can do the work.</h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Connect with verified student freelancers ready to take on your tasks.</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface mb-2 tracking-tight">
+            Find people who can do the work.
+          </h2>
+          <p className="text-sm md:text-base text-on-surface-variant max-w-2xl">
+            Connect with verified student freelancers ready to take on your tasks.
+          </p>
         </div>
-        <a className="hidden sm:flex items-center gap-2 text-primary-container font-label-md text-label-md hover:underline" href="#">
-          Browse all talent <span className="material-symbols-outlined text-sm">arrow_forward</span>
+        <a className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold hover:underline w-fit" href="#">
+          <span>Browse all talent</span>
+          <span className="material-symbols-outlined text-base">arrow_forward</span>
         </a>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
         {talentList.map((t, idx) => (
-          <div key={idx} className="bg-white rounded-2xl p-6 shadow-sm border border-surface-container-high card-hover flex flex-col items-center text-center">
-            {t.img ? (
-              <img className="w-20 h-20 rounded-full object-cover border-4 border-surface mb-4" alt={t.name} src={t.img} />
-            ) : (
-              <div className={`w-20 h-20 rounded-full ${t.bgClass} flex items-center justify-center text-2xl font-bold mb-4 border-4 border-surface`}>
-                {t.initials}
+          <div 
+            key={idx} 
+            className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-surface-container-high card-hover flex flex-col items-center text-center justify-between h-full"
+          >
+            <div className="flex flex-col items-center w-full">
+              {/* Avatar Image / Initials */}
+              {t.img ? (
+                <img 
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 sm:border-4 border-surface mb-3 sm:mb-4 shadow-sm" 
+                  alt={t.name} 
+                  src={t.img} 
+                />
+              ) : (
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${t.bgClass} flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 border-2 sm:border-4 border-surface shadow-sm`}>
+                  {t.initials}
+                </div>
+              )}
+
+              {/* Name & Role */}
+              <h3 className="font-bold text-base sm:text-lg leading-snug mb-1 text-on-surface">
+                {t.name}
+              </h3>
+              <p className="text-on-surface-variant text-xs sm:text-sm mb-3">
+                {t.role}
+              </p>
+
+              {/* Stats */}
+              <div className="flex items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm mb-4">
+                <div className="flex items-center gap-1">
+                  <span className="material-symbols-outlined text-amber-500 text-sm sm:text-base">star</span>
+                  <span className="font-semibold text-on-surface">{t.rating}</span>
+                </div>
+                <div className="flex items-center gap-1 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-sm sm:text-base">work</span>
+                  <span>{t.projects}</span>
+                </div>
               </div>
-            )}
-            <h3 className="font-title-lg text-title-lg text-[18px] leading-tight mb-1 text-on-surface">{t.name}</h3>
-            <p className="text-on-surface-variant text-sm mb-3">{t.role}</p>
-            <div className="flex items-center justify-center gap-4 text-sm mb-4">
-              <div className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-amber-500 text-[16px]">star</span>
-                <span className="font-medium text-on-surface">{t.rating}</span>
-              </div>
-              <div className="flex items-center gap-1 text-on-surface-variant">
-                <span className="material-symbols-outlined text-[16px]">work</span>
-                <span>{t.projects}</span>
+
+              {/* Skills Tags */}
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6">
+                {t.skills.map((skill, sIdx) => (
+                  <span key={sIdx} className="bg-[#F3F3FE] text-[#434655] px-2 py-0.5 sm:py-1 rounded-md text-xs font-medium">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-2 mb-6">
-              {t.skills.map((skill, sIdx) => (
-                <span key={sIdx} className="bg-[#F3F3FE] text-[#434655] px-2 py-1 rounded text-xs font-medium">{skill}</span>
-              ))}
-            </div>
-            <button className="w-full bg-surface-container-low text-primary-container py-2 rounded-lg font-label-md text-label-md hover:bg-primary-container/10 transition-colors">
+
+            {/* Profile Action */}
+            <button className="w-full bg-surface-container-low text-primary py-2.5 rounded-xl text-sm font-semibold hover:bg-primary/10 active:bg-primary/20 transition-colors">
               View Profile
             </button>
           </div>

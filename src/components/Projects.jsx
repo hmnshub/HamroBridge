@@ -32,45 +32,69 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="py-24 px-margin-mobile md:px-margin-desktop bg-white border-y border-surface-dim/30" id="projects">
-      <div className="max-w-container-max mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Find your next project.</h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Browse open opportunities posted by local businesses and individuals.</p>
+    <section className="py-10 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white border-y border-surface-dim/30" id="projects">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-8 md:mb-12 gap-4">
+          <div className="text-left">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface mb-2 tracking-tight">
+              Find your next project.
+            </h2>
+            <p className="text-sm md:text-base text-on-surface-variant max-w-2xl">
+              Browse open opportunities posted by local businesses and individuals.
+            </p>
           </div>
-          <a className="hidden sm:flex items-center gap-2 text-primary-container font-label-md text-label-md hover:underline" href="#">
-            View all projects <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          <a className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold hover:underline w-fit" href="#">
+            <span>View all projects</span>
+            <span className="material-symbols-outlined text-base">arrow_forward</span>
           </a>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {projects.map((proj, idx) => (
-            <div key={idx} className="bg-surface p-6 rounded-2xl border border-surface-container-high card-hover flex flex-col h-full">
-              <div className="flex justify-between items-start mb-4">
-                <span className="bg-[#F3F3FE] text-[#434655] px-2.5 py-1 rounded-md text-xs font-medium">{proj.category}</span>
-                <span className="text-on-surface-variant text-sm flex items-center gap-1">
-                  <span className="material-symbols-outlined text-[16px]">schedule</span> {proj.time}
-                </span>
+            <div 
+              key={idx} 
+              className="bg-surface p-5 sm:p-6 rounded-2xl border border-surface-container-high card-hover flex flex-col justify-between h-full text-left"
+            >
+              <div>
+                {/* Meta Badge & Posting Time */}
+                <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4">
+                  <span className="bg-[#F3F3FE] text-[#434655] px-2.5 py-1 rounded-md text-xs font-medium shrink-0">
+                    {proj.category}
+                  </span>
+                  <span className="text-on-surface-variant text-xs flex items-center gap-1 shrink-0">
+                    <span className="material-symbols-outlined text-xs sm:text-sm">schedule</span> 
+                    {proj.time}
+                  </span>
+                </div>
+
+                {/* Title & Description */}
+                <h3 className="font-bold text-lg sm:text-xl leading-snug mb-2 text-on-surface">
+                  {proj.title}
+                </h3>
+                <p className="text-on-surface-variant text-sm mb-6 line-clamp-3">
+                  {proj.desc}
+                </p>
               </div>
-              <h3 className="font-title-lg text-title-lg text-[20px] leading-tight mb-2 text-on-surface">{proj.title}</h3>
-              <p className="text-on-surface-variant text-sm mb-6 flex-grow">{proj.desc}</p>
-              <div className="flex flex-col gap-3 pt-4 border-t border-surface-variant">
-                <div className="flex justify-between text-sm">
-                  <span className="text-on-surface-variant">Budget</span>
-                  <span className="font-semibold text-on-surface">{proj.budget}</span>
+
+              {/* Card Footer Info & CTA */}
+              <div>
+                <div className="flex flex-col gap-2 pt-4 border-t border-surface-variant text-xs sm:text-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-on-surface-variant">Budget</span>
+                    <span className="font-semibold text-on-surface">{proj.budget}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-on-surface-variant">Deadline</span>
+                    <span className="text-on-surface">{proj.deadline}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-on-surface-variant">Deadline</span>
-                  <span className="text-on-surface">{proj.deadline}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-on-surface-variant">Proposals</span>
-                  <span className="text-on-surface">{proj.proposals}</span>
-                </div>
+
+                <button className="w-full mt-5 bg-white border border-outline-variant text-primary py-3 sm:py-2.5 rounded-xl text-sm font-semibold active:bg-surface-variant hover:border-primary transition-colors">
+                  Apply Now
+                </button>
               </div>
-              <button className="w-full mt-6 bg-white border border-outline-variant text-primary-container py-2.5 rounded-lg font-label-md text-label-md hover:border-primary-container transition-colors">
-                Apply Now
-              </button>
             </div>
           ))}
         </div>
