@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 export default function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Prevent background scrolling when mobile drawer is open
   useEffect(() => {
     document.body.style.overflow = isDrawerOpen ? "hidden" : "";
 
@@ -19,20 +18,20 @@ export default function Navbar() {
   return (
     <>
       {/* =========================
-          MAIN NAVBAR
+          NAVBAR
       ========================== */}
       <nav className="sticky top-0 z-40 w-full border-b border-surface-variant bg-white/95 backdrop-blur-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between sm:h-20">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+          <div className="flex h-[62px] items-center justify-between sm:h-20">
 
             {/* =========================
                 LOGO
             ========================== */}
             <a
               href="#"
-              className="flex min-w-0 shrink-0 items-center gap-2"
+              className="flex min-w-0 items-center gap-1.5 sm:gap-2"
             >
-              <span className="material-symbols-outlined shrink-0 text-[26px] text-primary sm:text-3xl">
+              <span className="material-symbols-outlined shrink-0 text-[25px] text-primary sm:text-3xl">
                 bridge
               </span>
 
@@ -42,7 +41,7 @@ export default function Navbar() {
             </a>
 
             {/* =========================
-                DESKTOP NAVIGATION
+                DESKTOP NAV
             ========================== */}
             <div className="hidden items-center gap-6 text-sm font-medium text-on-surface-variant md:flex lg:gap-8">
               <a
@@ -75,9 +74,9 @@ export default function Navbar() {
             </div>
 
             {/* =========================
-                ACTION AREA
+                ACTIONS
             ========================== */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
 
               {/* Desktop Login */}
               <button
@@ -87,21 +86,16 @@ export default function Navbar() {
                 Log in
               </button>
 
-              {/* Join Platform */}
+              {/* Join */}
               <button
                 type="button"
-                className="rounded-xl bg-primary px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-primary/90 active:scale-95 sm:px-4 sm:text-sm"
+                className="rounded-xl bg-primary px-3 py-2 text-[12px] font-semibold text-white shadow-sm transition-all hover:bg-primary/90 active:scale-95 sm:px-4 sm:py-2.5 sm:text-sm"
               >
-                <span className="hidden sm:inline">
-                  Join Platform
-                </span>
-
-                <span className="sm:hidden">
-                  Join
-                </span>
+                <span className="sm:hidden">Join</span>
+                <span className="hidden sm:inline">Join Platform</span>
               </button>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu */}
               <button
                 type="button"
                 onClick={() => setIsDrawerOpen(true)}
@@ -119,7 +113,7 @@ export default function Navbar() {
       </nav>
 
       {/* =========================
-          MOBILE DRAWER
+          MOBILE MENU
       ========================== */}
       <div
         className={`fixed inset-0 z-50 md:hidden ${
@@ -129,23 +123,19 @@ export default function Navbar() {
         }`}
       >
 
-        {/* =========================
-            BACKDROP
-        ========================== */}
+        {/* Backdrop */}
         <div
           onClick={closeDrawer}
-          className={`absolute inset-0 bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 ${
-            isDrawerOpen
-              ? "opacity-100"
-              : "opacity-0"
+          className={`absolute inset-0 bg-black/45 backdrop-blur-sm transition-opacity duration-300 ${
+            isDrawerOpen ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* =========================
-            DRAWER PANEL
+            DRAWER
         ========================== */}
         <aside
-          className={`absolute right-0 top-0 flex h-full w-[88%] max-w-[360px] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 flex h-full w-[85%] max-w-[340px] flex-col overflow-hidden rounded-l-3xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
             isDrawerOpen
               ? "translate-x-0"
               : "translate-x-full"
@@ -155,9 +145,8 @@ export default function Navbar() {
           {/* =========================
               DRAWER HEADER
           ========================== */}
-          <div className="flex items-center justify-between border-b border-surface-variant px-5 py-5">
+          <div className="flex items-center justify-between border-b border-surface-variant px-5 py-4">
 
-            {/* Drawer Logo */}
             <div className="flex items-center gap-2.5">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                 <span className="material-symbols-outlined text-primary">
@@ -171,12 +160,11 @@ export default function Navbar() {
                 </p>
 
                 <p className="text-[11px] text-on-surface-variant">
-                  Student–Talent Marketplace
+                  Nepal&apos;s talent marketplace
                 </p>
               </div>
             </div>
 
-            {/* Close Button */}
             <button
               type="button"
               onClick={closeDrawer}
@@ -190,60 +178,64 @@ export default function Navbar() {
           </div>
 
           {/* =========================
-              DRAWER CONTENT
+              MENU CONTENT
           ========================== */}
-          <div className="flex-1 overflow-y-auto px-4 py-6">
+          <div className="flex-1 overflow-y-auto px-4 py-5">
 
-            {/* Explore Label */}
-            <p className="mb-3 px-3 text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">
+            <p className="mb-3 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
               Explore
             </p>
 
-            {/* Navigation Links */}
             <nav className="space-y-1">
 
-              {/* Browse Projects */}
+              {/* Projects */}
               <a
                 href="#projects"
                 onClick={closeDrawer}
-                className="group flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
+                className="group flex min-h-[52px] items-center gap-3 rounded-2xl px-3 text-[15px] font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
               >
-                <span className="material-symbols-outlined text-[22px] text-on-surface-variant transition-colors group-hover:text-primary">
+                <span className="material-symbols-outlined text-[21px] text-on-surface-variant transition-colors group-hover:text-primary">
                   grid_view
                 </span>
 
-                <span>
-                  Browse Projects
+                <span>Browse Projects</span>
+
+                <span className="material-symbols-outlined ml-auto text-[18px] text-on-surface-variant/50">
+                  chevron_right
                 </span>
               </a>
 
-              {/* Find Talent */}
+              {/* Talent */}
               <a
                 href="#talent"
                 onClick={closeDrawer}
-                className="group flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
+                className="group flex min-h-[52px] items-center gap-3 rounded-2xl px-3 text-[15px] font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
               >
-                <span className="material-symbols-outlined text-[22px] text-on-surface-variant transition-colors group-hover:text-primary">
+                <span className="material-symbols-outlined text-[21px] text-on-surface-variant transition-colors group-hover:text-primary">
                   person_search
                 </span>
 
-                <span>
-                  Find Talent
+                <span>Find Talent</span>
+
+                <span className="material-symbols-outlined ml-auto text-[18px] text-on-surface-variant/50">
+                  chevron_right
                 </span>
               </a>
 
-              {/* How It Works */}
+              {/* How it works */}
               <a
                 href="#how"
                 onClick={closeDrawer}
-                className="group flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
+                className="group flex min-h-[52px] items-center gap-3 rounded-2xl px-3 text-[15px] font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
               >
-                <span className="material-symbols-outlined text-[22px] text-on-surface-variant transition-colors group-hover:text-primary">
+                <span className="material-symbols-outlined text-[21px] text-on-surface-variant transition-colors group-hover:text-primary">
                   help_outline
                 </span>
 
-                <span>
-                  How It Works
+                <span>How It Works</span>
+
+                <span className="material-symbols-outlined ml-auto text-[18px] text-on-surface-variant/50">
+                  chevron_right
                 </span>
               </a>
 
@@ -251,41 +243,41 @@ export default function Navbar() {
               <a
                 href="#categories"
                 onClick={closeDrawer}
-                className="group flex items-center gap-3 rounded-2xl px-3 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
+                className="group flex min-h-[52px] items-center gap-3 rounded-2xl px-3 text-[15px] font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
               >
-                <span className="material-symbols-outlined text-[22px] text-on-surface-variant transition-colors group-hover:text-primary">
+                <span className="material-symbols-outlined text-[21px] text-on-surface-variant transition-colors group-hover:text-primary">
                   category
                 </span>
 
-                <span>
-                  Categories
+                <span>Categories</span>
+
+                <span className="material-symbols-outlined ml-auto text-[18px] text-on-surface-variant/50">
+                  chevron_right
                 </span>
               </a>
             </nav>
 
             {/* =========================
-                ACCOUNT SECTION
+                ACCOUNT
             ========================== */}
-            <div className="mt-8 border-t border-surface-variant pt-6">
+            <div className="mt-7 border-t border-surface-variant pt-6">
 
-              <p className="mb-3 px-3 text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">
+              <p className="mb-3 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
                 Account
               </p>
 
-              {/* Login */}
               <button
                 type="button"
                 onClick={closeDrawer}
-                className="w-full rounded-xl border border-surface-variant px-4 py-3 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
+                className="w-full rounded-xl border border-surface-variant px-4 py-3.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
               >
                 Log in
               </button>
 
-              {/* Join Platform */}
               <button
                 type="button"
                 onClick={closeDrawer}
-                className="mt-3 w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90 active:scale-[0.98]"
+                className="mt-3 w-full rounded-xl bg-primary px-4 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90 active:scale-[0.98]"
               >
                 Join Platform
               </button>
@@ -293,23 +285,21 @@ export default function Navbar() {
           </div>
 
           {/* =========================
-              DRAWER FOOTER
+              FOOTER
           ========================== */}
-          <div className="border-t border-surface-variant px-5 py-5">
+          <div className="border-t border-surface-variant bg-surface-container-low/30 px-5 py-4">
 
-            {/* Verification */}
-            <div className="flex items-center gap-2 text-xs font-medium text-emerald-600">
-              <span className="material-symbols-outlined text-[17px]">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[17px] text-emerald-600">
                 verified
               </span>
 
-              <span>
+              <span className="text-xs font-semibold text-emerald-600">
                 Verified Community
               </span>
             </div>
 
-            {/* Description */}
-            <p className="mt-2 text-[11px] leading-relaxed text-on-surface-variant">
+            <p className="mt-1.5 text-[11px] leading-relaxed text-on-surface-variant">
               Connect with students, freelancers and businesses across Nepal.
             </p>
           </div>
